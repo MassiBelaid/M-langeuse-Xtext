@@ -10,12 +10,6 @@ Model :
 	(features+=Feature)+
 ;
 
-Task:
-	'Task' name=ID  ':'
-		(features+=Feature)+
-		'end.';
-
-		
 Feature:
 	Scan|Move|Filt|Suck|Blow|Open|Shut|Wait
 ;
