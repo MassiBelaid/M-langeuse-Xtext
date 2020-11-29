@@ -1,0 +1,66 @@
+grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
+
+generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
+
+
+
+
+
+Model :
+	(features+=Feature)+
+;
+
+Task:
+	'Task' name=ID  ':'
+		(features+=Feature)+
+		'end.';
+
+		
+Feature:
+	Scan|Move|Filt|Suck|Blow|Open|Shut|Wait
+;
+
+Scan:
+	fun='scan' comp=Comparaison value=INT ':' valuereturn=INT
+	
+;
+
+Move:
+	fun='move' value=INT (comp=Comparaison valuereturn=INT)*
+;
+
+Filt:
+	fun='filt' value=INT (comp=Comparaison valuereturn=INT)*
+;
+ 
+
+Comparaison:
+	'<'|'>'|'<='|'>='|'=='|'!='
+;
+
+
+
+terminal DOUBLE:
+	INT '.' INT;
+       
+Suck:
+	fun='suck' (value=INT|valeur=DOUBLE) (comp=Comparaison valuereturn=INT)* 
+;
+
+Blow:
+	fun='blow' (value=INT|valeur=DOUBLE) (comp=Comparaison valuereturn=INT)* 
+;
+
+Open:
+	fun='open' value=INT (comp=Comparaison valuereturn=INT)* 
+;
+Shut:
+	fun='shut' value=INT (comp=Comparaison valuereturn=INT)* 
+;
+
+Wait:
+	fun='wait' value=INT (comp=Comparaison valuereturn=INT)* 
+;
+
+
+
